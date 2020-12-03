@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Imdb API</title>
+</head>
+<body>
+<div id='header'>
+    <h1>Imdb Movies Search</h1>
+    <div>
+        <form th:action="@{/search}" th:object="${searchObject}" method="post">
+            <label for="search-filter"></label>
+            <select th:field="*{filterType}" name="search-type" id="search-filter">
+                <option value="SearchMovie">Search By Movie Name</option>
+                <option value="SearchName">Search By Name</option>
+                <option value="SearchTitle">Search By Title</option>
+                <option value="SearchSeries">Search By Series Name</option>
+            </select>
+            <label for="search-query"></label>
+            <input type="text" th:field="*{query}" placeholder="search query" id="search-query">
+            <p><input type="submit" value="Search"/></p>
+        </form>
+    </div>
+</div>
+<div id="search-results">
+</div>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

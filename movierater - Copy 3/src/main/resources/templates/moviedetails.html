@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Movie Details</title>
+</head>
+<body>
+<div id="search-results">
+    <th:block th:each="movie : ${movies}">
+        <div class="result-item" th:id="${movie.id}">
+            <img th:src="${movie.image}" th:alt="${movie.title}"/>
+            <h3>
+                <span th:text="${movie.title}"></span>
+            </h3>
+            <p>
+                <span th:text="${movie.description}"></span>
+            </p>
+            <div class="like-container">
+                <i class="far fa-thumbs-up fa-2x" th:id="${movie.id+ '_' + movie.title + '_like'}"
+                   th:attr="onclick=|likeMovie('${movie.id+ '_' + movie.title}')|"></i>
+                <i class="far fa-thumbs-down fa-2x" th:id="${movie.id+ '_' + movie.title + '_dislike'}"
+                   th:attr="onclick=|dislikeMovie('${movie.id+ '_' + movie.title}')|"></i>
+            </div>
+        </div>
+    </th:block>
+</div>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
